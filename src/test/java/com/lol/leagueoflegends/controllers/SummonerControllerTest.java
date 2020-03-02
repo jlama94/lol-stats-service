@@ -29,7 +29,6 @@ class SummonerControllerTest {
     summonerController = new SummonerController(summonerMatchService);
   }
 
-  /*
   @Test
   void getMatchesReturnsSuccessfully() {
     //Given
@@ -50,5 +49,4 @@ class SummonerControllerTest {
     //Then
     Assert.assertEquals(expectedMatches, actual);
   }
-   */
 }

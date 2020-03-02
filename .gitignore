@@ -4,9 +4,6 @@ target/
 !**/src/main/**
 !**/src/test/**
 
-## configuration files ##
-src/main/java/com/lol/leagueoflegends/Configuration.java
-
 ### MVN ###
 mvnw*
 .mvn*

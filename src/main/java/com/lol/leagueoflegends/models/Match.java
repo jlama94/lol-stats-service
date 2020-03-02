@@ -12,7 +12,6 @@ public class Match {
   private String platformId;
   private Long champion;
   private Long season;
-  private Long timestamp;
   private String role;
   private String lane;
 }
