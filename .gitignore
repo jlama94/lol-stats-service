@@ -8,6 +8,10 @@ target/
 mvnw*
 .mvn*
 
+## configuration ##
+src/main/java/com/lol/leagueoflegends/Configuration.java
+
+
 ### STS ###
 .apt_generated
 .classpath

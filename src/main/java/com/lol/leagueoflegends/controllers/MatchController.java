@@ -1,8 +1,14 @@
 package com.lol.leagueoflegends.controllers;
 
+import com.lol.leagueoflegends.models.Match;
+import com.lol.leagueoflegends.models.MatchResponse;
 import com.lol.leagueoflegends.services.SummonerMatchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class MatchController {
@@ -14,22 +20,12 @@ public class MatchController {
     this.summonerMatchService = summonerMatchService;
   }
 
-  /*
-  @RequestMapping("/matches/{accountId}/{startDate}")
-  MatchResponse getLast7Matches(@PathVariable String accountId) {
-    MatchConnector matchConnector = Feign.builder().decoder(new JacksonDecoder())
-      .target(MatchConnector.class, "https://na1.api.riotgames.com");
 
-    String riotToken = "RGAPI-96098270-3e1b-4d85-9952-08dd769c5cc0";
+  @RequestMapping("/matches/{summonerName}")
+  public List<Match> getMatches(@PathVariable String summonerName) {
 
-    MatchResponse matches = matchConnector.getMatchesForAccountId(accountId, "1577232000", riotToken);
-    return matches;
-  }
-
-  @RequestMapping("/matches/summoner/{summonerName}")
-  MatchResponse getMatchesForSummoner(@PathVariable String summonerName) {
     MatchResponse matchResponse = summonerMatchService.getMatchesBySummonerName(summonerName);
-    return null;
+
+    return matchResponse.getMatches();
   }
-  */
 }
