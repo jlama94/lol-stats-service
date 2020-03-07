@@ -11,6 +11,7 @@ import lombok.Setter;
 public class Match {
   private String platformId;
   private Long champion;
+  private Long timestamp;
   private Long season;
   private String role;
   private String lane;

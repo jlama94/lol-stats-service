@@ -1,5 +1,6 @@
 package com.lol.leagueoflegends.models;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +10,8 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class MatchResponse {
+@EqualsAndHashCode
+public class FilteredMatchResponse {
   private String username;
-  private List<Match> matches;
+  private List<MatchData> matchData;
 }
