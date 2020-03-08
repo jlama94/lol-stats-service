@@ -3,7 +3,7 @@ package com.lol.leagueoflegends.services;
 import com.lol.leagueoflegends.Configuration;
 import com.lol.leagueoflegends.client.MatchClient;
 import com.lol.leagueoflegends.client.SummonerClient;
-import com.lol.leagueoflegends.models.MatchResponse;
+import com.lol.leagueoflegends.models.RiotMatchResponse;
 import com.lol.leagueoflegends.models.Summoner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,9 +36,9 @@ public class SummonerMatchService {
    * @param summonerName
    * @return
    */
-  public MatchResponse getMatchesBySummonerName(String summonerName) {
+  public RiotMatchResponse getMatchesBySummonerName(String summonerName) {
     Summoner summoner = summonerClient.getAccountIdUsingSummonerName(summonerName, RIOT_TOKEN);
-    MatchResponse matchResponse = matchClient.getMatchesForAccountId(summoner.getAccountId(), RIOT_TOKEN);
+    RiotMatchResponse matchResponse = matchClient.getMatchesForAccountId(summoner.getAccountId(), RIOT_TOKEN);
     return matchResponse;
   }
 }

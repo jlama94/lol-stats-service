@@ -1,17 +1,15 @@
 package com.lol.leagueoflegends.controllers;
 
-import com.lol.leagueoflegends.models.FilteredMatchResponse;
-import com.lol.leagueoflegends.models.Match;
-import com.lol.leagueoflegends.models.MatchData;
 import com.lol.leagueoflegends.models.MatchResponse;
+import com.lol.leagueoflegends.models.RiotMatch;
+import com.lol.leagueoflegends.models.MatchData;
+import com.lol.leagueoflegends.models.RiotMatchResponse;
 import com.lol.leagueoflegends.services.SummonerMatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.*;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -29,63 +27,24 @@ public class MatchController {
 
   /**
    * @param summonerName
-   * @return a List of matches within 7 days.
+   * @return a List of from Riot API.
    */
   @RequestMapping("/matches/{summonerName}")
-  public FilteredMatchResponse getMatches(@PathVariable String summonerName){
+  public MatchResponse getMatches(@PathVariable String summonerName) {
 
-    MatchResponse matchResponse = summonerMatchService.getMatchesBySummonerName(summonerName);
+    RiotMatchResponse matchResponse = summonerMatchService.getMatchesBySummonerName(summonerName);
 
-    FilteredMatchResponse filteredMatchResponse = new FilteredMatchResponse();
+    MatchResponse filteredMatchResponse;
 
     List<MatchData> matches = new ArrayList<>();
-    MatchData match = null;
+    MatchData match;
 
-    for (int i = 0; i < matchResponse.getMatches().size(); i++) {
-      Match currentMatch = matchResponse.getMatches().get(i);
-
-      // if the timestamp -> Date is within today & 7 days ago, add it to the List<MatchData>.
-      if (isTimestampWithinRange(currentMatch.getTimestamp()))
-      {
-        match = new MatchData();
-        // format to a String for the MatchData object field: Date
-        String format = ZonedDateTime.ofInstant(Instant.ofEpochMilli(currentMatch.getTimestamp()), ZoneOffset.UTC)
-          .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
-        match.setChampion(currentMatch.getChampion());
-        match.setRole(currentMatch.getRole());
-        match.setDate(format);
-
-        matches.add(match);
-      }
+    for (RiotMatch responseMatch : matchResponse.getMatches()) {
+      match = new MatchData(responseMatch.getTimestamp(), responseMatch.getChampion(), responseMatch.getRole());
+      matches.add(match);
     }
-
-
-    filteredMatchResponse.setUsername(summonerName);
-    filteredMatchResponse.setMatchData(matches);
-
+    filteredMatchResponse = new MatchResponse(summonerName, matches);
 
     return filteredMatchResponse;
-  }
-
-
-  /**
-   * Helper method that checks if current timestamp is within range, counting today and seven days ago.
-   * @param epochSeconds
-   * @return
-   */
-  private boolean isTimestampWithinRange(long epochSeconds) {
-
-    // current match from the loop from list of matches returned from riot
-    Instant instantOfCurrentMatch = Instant.ofEpochMilli(epochSeconds);
-    ZonedDateTime currentMatchDateTime = ZonedDateTime.ofInstant(instantOfCurrentMatch, ZoneOffset.UTC);
-
-    ZonedDateTime sevenDaysAgoDateTime = ZonedDateTime.now(ZoneOffset.UTC).minusDays(6)
-      .withHour(0)
-      .withMinute(0)
-      .withSecond(0)
-      .withNano(0);
-
-    return currentMatchDateTime.isAfter(sevenDaysAgoDateTime);
   }
 }

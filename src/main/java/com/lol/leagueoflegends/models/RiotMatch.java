@@ -8,7 +8,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Match {
+public class RiotMatch {
   private String platformId;
   private Long champion;
   private Long timestamp;

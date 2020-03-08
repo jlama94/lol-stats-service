@@ -4,10 +4,10 @@ import lombok.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
 public class MatchData {
-  private String date;
+  private Long date;
   private Long champion;
   private String role;
 }
