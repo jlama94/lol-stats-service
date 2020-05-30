@@ -9,7 +9,7 @@ mvnw*
 .mvn*
 
 ## configuration ##
-src/main/java/com/lol/leagueoflegends/Configuration.java
+src/main/java/com/lol/leagueoflegends/configuration/Configuration.java
 
 
 ### STS ###

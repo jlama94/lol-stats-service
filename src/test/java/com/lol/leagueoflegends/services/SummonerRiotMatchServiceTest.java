@@ -1,7 +1,7 @@
 package com.lol.leagueoflegends.services;
 
 
-import com.lol.leagueoflegends.Configuration;
+import com.lol.leagueoflegends.configuration.Configuration;
 import com.lol.leagueoflegends.client.MatchClient;
 import com.lol.leagueoflegends.client.SummonerClient;
 import com.lol.leagueoflegends.models.RiotMatchResponse;
