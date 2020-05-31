@@ -25,14 +25,21 @@ public class MatchController {
     this.summonerMatchService = summonerMatchService;
   }
 
-  /**
-   * @param summonerName
-   * @return a List of from Riot API.
-   */
-  @RequestMapping("/matches/{summonerName}")
-  public MatchResponse getMatches(@PathVariable String summonerName) {
 
-    RiotMatchResponse matchResponse = summonerMatchService.getMatchesBySummonerName(summonerName);
+  /**
+   *
+   * @param summonerName
+   * @param date in epochSeconds
+   * @return a List of matches from Riot's API.
+   *
+   * http://localhost:8080/matches/jullly/1590934179
+   *
+   */
+  @RequestMapping("/matches/{summonerName}/{date}")
+  public MatchResponse getMatches(@PathVariable String summonerName,
+                                  @PathVariable long date) {
+
+    RiotMatchResponse matchResponse = summonerMatchService.getMatchesBySummonerName(summonerName, date);
 
     MatchResponse filteredMatchResponse;
 

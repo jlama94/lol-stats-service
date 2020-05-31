@@ -8,6 +8,8 @@ import com.lol.leagueoflegends.models.Summoner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+
 @Service
 public class SummonerMatchService {
 
@@ -25,10 +27,8 @@ public class SummonerMatchService {
 
 
   public Summoner getAccountId(String userName) {
-    Summoner summoner = summonerClient.getAccountIdUsingSummonerName(userName, RIOT_TOKEN);
-    return summoner;
+    return summonerClient.getAccountIdUsingSummonerName(userName, RIOT_TOKEN);
   }
-
 
 
   /**
@@ -36,9 +36,8 @@ public class SummonerMatchService {
    * @param summonerName
    * @return
    */
-  public RiotMatchResponse getMatchesBySummonerName(String summonerName) {
+  public RiotMatchResponse getMatchesBySummonerName(String summonerName, long startDate) {
     Summoner summoner = summonerClient.getAccountIdUsingSummonerName(summonerName, RIOT_TOKEN);
-    RiotMatchResponse matchResponse = matchClient.getMatchesForAccountId(summoner.getAccountId(), RIOT_TOKEN);
-    return matchResponse;
+    return matchClient.getMatchesForAccountId(summoner.getAccountId(), startDate, RIOT_TOKEN);
   }
 }

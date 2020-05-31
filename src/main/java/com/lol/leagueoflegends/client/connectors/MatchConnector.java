@@ -5,6 +5,7 @@ import feign.Headers;
 import feign.Param;
 import feign.RequestLine;
 
+// https://developer.riotgames.com/apis#match-v4
 public interface MatchConnector {
 
   @Headers("X-Riot-Token: {riotToken}")
