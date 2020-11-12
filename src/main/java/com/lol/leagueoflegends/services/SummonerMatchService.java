@@ -3,6 +3,7 @@ package com.lol.leagueoflegends.services;
 import com.lol.leagueoflegends.client.MatchClient;
 import com.lol.leagueoflegends.client.SummonerClient;
 import com.lol.leagueoflegends.client.connectors.SummonerConnector;
+import com.lol.leagueoflegends.models.Match;
 import com.lol.leagueoflegends.models.MatchResponse;
 import com.lol.leagueoflegends.models.Summoner;
 import feign.Feign;
@@ -34,6 +35,7 @@ public class SummonerMatchService {
   public MatchResponse getMatchesBySummonerName(String summonerName) {
 
     // used here
+    // testing
     Summoner summoner = summonerClient.getAccountIdUsingSummonerName(summonerName, RIOT_TOKEN);
 
     MatchResponse matchResponse = matchClient.getMatchesForAccountId(summoner.getAccountId(), RIOT_TOKEN);

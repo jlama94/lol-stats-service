@@ -6,9 +6,9 @@ import lombok.Setter;
 
 
 //@JsonIgnoreProperties(ignoreUnknown = true) // not needed
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 public class Summoner {
   private String name;
   private String accountId;
