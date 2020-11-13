@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * MatchClient: uses the MatchConnector to hit Riot's API
+ * Location: src/main/java/com/lol/leagueoflegends/client/connectors/MatchConnector.java
  */
 @Component
 public class MatchClient {

@@ -32,7 +32,7 @@ public class MatchController {
    * @param date in epochSeconds
    * @return a List of matches from Riot's API.
    *
-   * http://localhost:8080/matches/jullly/1590934179
+   * http://localhost:8080/matches/PTeemo/1590934179
    *
    */
   @RequestMapping("/matches/{summonerName}/{date}")

@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-
+/**
+ * Uses MatchClient & SummonerClient
+ */
 @Service
 public class SummonerMatchService {
 

@@ -19,6 +19,11 @@ public class SummonerController {
     this.summonerMatchService = summonerMatchService;
   }
 
+  /**
+   *
+   * @param userName
+   * @return Summoner name & accountID
+   */
   @RequestMapping("/summoners/{userName}")
   public Summoner getAccountId(@PathVariable String userName) {
     return summonerMatchService.getAccountId(userName);
