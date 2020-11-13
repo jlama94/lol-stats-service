@@ -18,7 +18,6 @@ public class SummonerController {
     this.summonerMatchService = service;
   }
 
-
   //http://localhost:8080/summoners/PTeemo
   @RequestMapping("/summoners/{summonerName}")
   public Summoner getSummonerByName(@PathVariable String summonerName){
