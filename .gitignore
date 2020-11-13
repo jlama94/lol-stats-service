@@ -8,9 +8,8 @@ target/
 mvnw*
 .mvn*
 
-## configuration ##
+### Riot API Token ###
 src/main/java/com/lol/leagueoflegends/configuration/Configuration.java
-
 
 ### STS ###
 .apt_generated

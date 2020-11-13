@@ -6,6 +6,7 @@ import feign.Feign;
 import feign.jackson.JacksonDecoder;
 import org.springframework.stereotype.Component;
 
+// Hits the Riot API
 @Component
 public class SummonerClient {
 

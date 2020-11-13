@@ -4,11 +4,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 
 @NoArgsConstructor
 @Getter
 @Setter
-public class MatchResponse {
-  private List<Match> matches;
+public class Match {
+  private String platformId;
+  private Long champion;
+  private Long season;
+  private String role;
+  private String lane;
 }

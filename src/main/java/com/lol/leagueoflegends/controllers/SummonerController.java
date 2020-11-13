@@ -1,6 +1,5 @@
 package com.lol.leagueoflegends.controllers;
 
-
 import com.lol.leagueoflegends.models.Summoner;
 import com.lol.leagueoflegends.services.SummonerMatchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +14,14 @@ public class SummonerController {
   private SummonerMatchService summonerMatchService;
 
   @Autowired
-  public SummonerController(SummonerMatchService summonerMatchService) {
-    this.summonerMatchService = summonerMatchService;
+
+  public SummonerController(SummonerMatchService service) {
+    this.summonerMatchService = service;
   }
 
-  /**
-   *
-   * @param userName
-   * @return Summoner name & accountID
-   */
-  @RequestMapping("/summoners/{userName}")
-  public Summoner getAccountId(@PathVariable String userName) {
-    return summonerMatchService.getAccountId(userName);
+  //http://localhost:8080/summoners/PTeemo
+  @RequestMapping("/summoners/{summonerName}")
+  public Summoner getSummonerByName(@PathVariable String summonerName){
+    return summonerMatchService.getSummonerByName(summonerName);
   }
 }
