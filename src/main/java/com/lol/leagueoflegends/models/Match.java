@@ -14,4 +14,5 @@ public class Match {
   private Long season;
   private String role;
   private String lane;
+  private Long timestamp;
 }
