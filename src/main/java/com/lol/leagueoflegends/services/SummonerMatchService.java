@@ -21,7 +21,7 @@ public class SummonerMatchService {
   private MatchClient matchClient;
   private SummonerClient summonerClient;
 
-  private static final String RIOT_TOKEN = Configuration.getInstance().getRiotApiKey();
+  private static final String RIOT_TOKEN = Configuration.getInstance().getRiotToken();
 
   @Autowired
   public SummonerMatchService(MatchClient matchClient,
