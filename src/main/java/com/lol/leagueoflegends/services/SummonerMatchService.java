@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * Used by MatchController & SummonerController.
- *
- *
  */
 @Service
 public class SummonerMatchService {
