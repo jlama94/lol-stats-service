@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-// Used by MatchController & SummonerController.
+/**
+ * Used by MatchController & SummonerController.
+ */
 @Service
 public class SummonerMatchService {
 
