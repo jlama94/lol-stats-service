@@ -6,24 +6,29 @@ import feign.Feign;
 import feign.jackson.JacksonDecoder;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.ZoneOffset;
 
 // Hits the Riot API
 @Component
 public class MatchClient {
 
-  public MatchResponse getMatchesForAccountId(String accountId, String RIOT_TOKEN){
+  public MatchResponse getMatchesForAccountId(String accountId, LocalDate startDate, LocalDate endDate, String RIOT_TOKEN) {
 
     MatchConnector matchConnector = Feign.builder()
       .decoder(new JacksonDecoder())
       .target(MatchConnector.class, "https://na1.api.riotgames.com");
 
-    long beginDateTimeInEpochSeconds =
-      LocalDateTime.now().minusDays(7).withHour(0).withMinute(0).withSecond(0).withNano(0).toEpochSecond(ZoneOffset.UTC);
+
+    long startDateTime = startDate.atStartOfDay()
+      .atZone(ZoneOffset.UTC).toInstant().toEpochMilli();
+
+    long endDateTime = endDate.atStartOfDay()
+      .atZone(ZoneOffset.UTC).toInstant().toEpochMilli();
+
 
     MatchResponse matchResponse = matchConnector
-      .getMatchesForAccountId(accountId, beginDateTimeInEpochSeconds, RIOT_TOKEN);
+      .getMatchesForAccountId(accountId, startDateTime, endDateTime, RIOT_TOKEN);
 
     return matchResponse;
   }

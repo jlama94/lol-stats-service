@@ -9,6 +9,8 @@ import com.lol.leagueoflegends.models.Summoner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 
 /**
  * Used by MatchController & SummonerController.
@@ -34,11 +36,12 @@ public class SummonerMatchService {
 
 
 
-  public MatchResponse getMatchesBySummonerName(String summonerName) {
+  public MatchResponse getMatchesBySummonerName(String summonerName, LocalDate startDate, LocalDate endDate) {
 
     Summoner summoner = summonerClient.getAccountIdUsingSummonerName(summonerName, RIOT_TOKEN);
 
-    MatchResponse matchResponse = matchClient.getMatchesForAccountId(summoner.getAccountId(), RIOT_TOKEN);
+    MatchResponse matchResponse = matchClient.getMatchesForAccountId(summoner.getAccountId(),
+      startDate, endDate, RIOT_TOKEN);
 
     return matchResponse;
   }
