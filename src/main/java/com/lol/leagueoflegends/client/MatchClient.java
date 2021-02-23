@@ -20,10 +20,11 @@ public class MatchClient {
       .target(MatchConnector.class, "https://na1.api.riotgames.com");
 
 
+    // 00:00 hour 0 minute 0
     long startDateTime = startDate.atStartOfDay()
       .atZone(ZoneOffset.UTC).toInstant().toEpochMilli();
 
-    long endDateTime = endDate.atStartOfDay()
+    long endDateTime = endDate.plusDays(1).atStartOfDay()
       .atZone(ZoneOffset.UTC).toInstant().toEpochMilli();
 
 
